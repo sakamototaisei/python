@@ -49,3 +49,39 @@
 # while count < 10:  # countより小さい場合は処理を実行
 #     print(count)
 #     count += 1
+
+# continue:ループないにcontinueがあると処理が一度飛ばされる
+# break:breakが実行されるとループの外に処理が出る
+# else:ループの外に出た際に実行される(breakで抜けた場合は実行されない)
+
+# for i in range(10):
+#   if i == 3:
+#     continue
+#   print(i)
+# else:
+#   print('プリント処理終了')
+
+# num = 0
+# while num < 10:
+#   if num == 5:
+#     num += 1
+#     continue
+#   # if num == 7:
+#   #   break
+#   print(num)
+#   num += 1
+# else:
+#   print('whileループ終了')
+# ーーーーーーーーーーーーーーーーーーーー
+
+# := これはセイウチ演算子という
+# 変数の代入と変数の使用を同志に実行できるという特徴を持っている
+
+# if (n := 10) > 5:
+#   print('5より大きい: {}'.format(n))
+
+# n = 0
+# while (n := n + 1) < 10:
+#   print(n)
+# ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
