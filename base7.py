@@ -169,9 +169,9 @@ class Human:
     return len(self.name)
 
 
-man = Human('Taro', 20, '09080886767')
-man2 = Human('Taro2', 18, '09080886767')
-man3 = Human('sakatai', 18, '08080886767')
+man = Human('Taro', 20, '09088886767')
+man2 = Human('Taro2', 18, '09088886767')
+man3 = Human('sakatai', 18, '08088886767')
 
 man_str = str(man)
 print(man_str)
