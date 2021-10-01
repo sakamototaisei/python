@@ -5,3 +5,8 @@ for i in list_a:
 
 for i in range(1,10):
   print(i, end=' ')
+
+i = 0
+while i < 10:
+  print(i, end=' ')
+  i += 1
