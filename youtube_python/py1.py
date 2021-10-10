@@ -1,1 +1,0 @@
-# YouTubeでのPython学習5章まで終了
