@@ -126,3 +126,165 @@ x = ' ### '.join(to_split)      # join() リストを' 'で繋げてくれる
 print(x)
 
 print('--------------------')
+
+
+# ---------------------------------------------------------------
+# リストのコピー
+
+i = [1, 2, 3, 4, 5]
+j = i
+j[0] = 100
+print('i =', i)
+print('j =', j)
+
+x = [1, 2, 3, 4, 5]
+# y = x[:] これでもコピーできる
+y = x.copy()
+y[0] = 100
+print('x =', x)
+print('y =', y)
+
+x = 20
+y = x
+y = 5
+print(id(x))
+print(id(y))
+print(x)
+print(y)
+
+print('--------------------')
+
+x = ['a', 'b']
+y = x
+y[0] = 'p'
+print(id(x))
+print(id(y))
+print(x)
+print(y)
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# リストの使い方
+
+seat = []
+min = 0
+max = 5
+print(min <= len(seat) < max)
+seat.append('p')
+seat.append('p')
+print(min <= len(seat) < max)
+seat.append('p')
+seat.append('p')
+print(min <= len(seat) < max)
+seat.append('p')
+seat.append('p')
+print(min <= len(seat) < max)
+seat.pop(0)
+print(min <= len(seat) < max)
+seat.pop(0)
+print(min <= len(seat) < max)
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# タプル 値を書き換えられない 読み込みくらい
+
+t = (1, 2, 3, 4, 1, 2)
+print(t)
+print(type(t))
+print(t.count(1))
+
+t = ([1, 2, 3], [4, 5, 6])
+print(t)
+print(t[0][0])
+t[0][0] = 100       # これだと値を変えられる
+print(t)
+print(type(t))
+
+t = 1, 2, 3         # ()これなくてもタプルとなる
+print(t)
+t = 1               # int型
+t = (1)             # int型
+t = 1,              # ,でtuple型になる
+print(type(t))
+
+new_tuple = (1, 2, 3) + (4, 5, 6)
+
+print(new_tuple)
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# タプルのアンバッキング
+
+num_tuple = (10, 20)
+
+x, y = num_tuple
+print(x, y)
+
+min, max = 0, 100
+print(min, max)
+
+i = 10
+j = 20
+print(f'入れ替え前 i = {i}, j = {j}')
+tmp = i
+i = j
+j = tmp
+print(f'入れ替え後 i = {i}, j = {j}')
+print('--------------------')
+
+a = 100
+b = 200
+print(f'アンパッキング前 a = {a}, b = {b}')
+a, b = b, a
+print(f'アンパッキング後 a = {a}, b = {b}')
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# タプルの使い方
+
+chose_from_two = ('A', 'B', 'C')
+
+answer = []
+answer.append('A')
+answer.append('C')
+
+print(chose_from_two)
+print(answer)
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# 辞書型
+
+d = {'x': 10, 'y': 20}
+print(d)
+print(type(d))
+print(d['x'])
+print(d['y'])
+d['x'] = 100
+print(d)
+d['x'] = 'xxx'
+print(d)
+d['z'] = 200
+print(d)
+d[1] = 10000
+print(d)
+
+print(dict(a=10, b=20))                 # 辞書型の生成
+print(dict([('a', 10), ('b', 20)]))     # 辞書型の生成2
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# 辞書型のメソッド
+
