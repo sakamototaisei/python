@@ -557,3 +557,309 @@ print('--------------------')
 
 # ---------------------------------------------------------------
 # デコレーター
+
+def print_more(func):
+    def wrapper(*args, **kwargs):
+        print('func:', func.__name__)
+        print('args:', args)
+        print('kwargs:', kwargs)
+        result = func(*args, **kwargs)
+        print('result:', result)
+        return result
+    return wrapper
+
+
+def print_info(func):
+    def wrapper(*args, **kwargs):
+        print('start')
+        result = func(*args, **kwargs)
+        print('end')
+        return result
+    return wrapper
+
+
+# @デコレーター関数 何かを包み込んでいるイメージ デコレーターの順番によって処理が変わる
+@print_info
+@print_more
+def add_num(a, b):
+    return a + b
+
+r = add_num(10, 20)
+print(r)
+
+# f = print_info(add_num)
+# r = f(10, 20)
+# print(r)
+
+# print('start')
+# r = add_num(10, 20)
+# print('end')
+
+# print(r)
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# ラムダ式
+
+
+l = ['Mon', 'tue', 'Wed', 'Thu', 'fri', 'sat', 'Sun']
+
+def change_words(words, func):
+    for word in words:
+        print(func(word))
+
+# def sample_func(word):
+#     return word.capitalize()
+
+# ラムダでかける ファンクションを引数にするときに有効
+# sample_func = lambda word: word.capitalize()
+
+
+change_words(l, lambda word: word.capitalize())
+print('--------------------')
+change_words(l, lambda word: word.lower())
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# ジェネレーター反復処理
+
+
+l = ['Good morning', 'Good afternoon', 'Good night']
+
+for i in l:
+    print(i)
+
+print('--------------------')
+
+def greeting():
+    yield 'Good morning'
+    yield 'Good afternoon'
+    yield 'Good night'
+
+def counter(num=10):
+    for _ in range(num):
+        yield 'run'
+
+
+# for g in greeting():
+#     print(g)
+
+# ジェネレーター生成
+g = greeting()
+c = counter()
+
+print(next(g))
+
+print(next(c))
+print(next(c))
+print(next(c))
+print(next(c))
+
+print(next(g))
+
+print(next(c))
+print(next(c))
+print(next(c))
+print(next(c))
+
+print(next(g))
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# リスト内包表記
+
+t = (1, 2, 3, 4, 5)
+t2 = (5, 6, 7, 8, 9, 10)
+
+l = [i for i in t if i % 2 == 0]
+print(l)
+
+r = []
+for i in t:
+    for j in t2:
+        r.append(i * j)
+
+print(r)
+
+# 上記をリスト内包表記で書くと
+# forの中にforなどをリスト内包でかけるが読みにくいため望ましくない場合がある
+# おすすめはfor文のifの場合などで使う
+r = [i * j for i in t for j in t2]
+print(r)
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# 辞書内包表記
+
+w = ['mon', 'tue', 'wed']
+f = ['coffee', 'milk', 'water']
+
+d = {}
+for x, y in zip(w, f):
+    d[x] = y
+
+print(d)
+
+# 上記を内包表記で書く
+d = {k: v for k, v in zip(w, f)}
+print(d)
+
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# 集合内包表記
+
+
+s = set()
+
+for i in range(10):
+    s.add(i)
+
+print(s)
+
+# 上記を内包表記で書く
+s = {i for i in range(10) if i % 2 == 0}
+print(s)
+
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# ジャネレーター内包表記
+
+
+def g():
+    for i in range(10):
+        yield i
+
+g = g()
+print(next(g))
+print(next(g))
+print(next(g))
+
+# 上記を内包表記で書く
+g = (i for i in range(10) if i % 2 == 0)
+# タプルかと思いきやジェネレーターになっている
+print(type(g))
+print(next(g))
+print(next(g))
+print(next(g))
+
+# タプル内包表記にはtuple()と宣言する
+g = tuple(i for i in range(10) if i % 2 == 0)
+print(type(g))
+print(g)
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# 名前空間とスコープ
+
+
+"""
+Test Test #########################
+"""
+
+# グローバル変数
+animal = 'cat'
+
+def f():
+    """Test func doc"""
+    # グローバル変数を宣言している
+    # global animal
+    # ローカル変数
+    animal = 'dog'
+    print('local', locals())
+    print('--------------------')
+
+    print(f.__name__)
+    print(f.__doc__)
+
+f()
+print('global:', __name__)
+# print('global:', globals())
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# 例外処理
+
+
+l = [1, 2, 3]
+i = 5
+# del l
+
+try:
+    l[0]
+# エラーをキャッチして処理が行われる
+except IndexError as ex:
+    print("Don't worry : {}".format(ex))
+except NameError as ex:
+    print(ex)
+# IndexでもNameでもないエラーをキャッチして処理が行われる 細かくキャッチする記述をした方がよい
+except Exception as ex:
+    print('other : {}'.format(ex))
+# exceptがエラーなく抜けた場合実行される
+else:
+    print('done')
+# エラーあってもなくても必ず実行される処理
+finally:
+    print('clean up')
+
+print('last')
+
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
+# 独自の例外の作成
+
+
+# raise IndexError('test error')
+
+class UppercaseError(Exception):
+    pass
+
+def check():
+    words = ['apple', 'banana', 'orange']
+    for word in words:
+        if word.isupper():
+            raise UppercaseError(word)
+
+try:
+    check()
+except UppercaseError as exc:
+    print('This is my fault. Go next')
+else:
+    print('独自のエラー検出されず')
+finally:
+    print('clean up')
+
+
+print('--------------------')
+
+
+# ---------------------------------------------------------------
