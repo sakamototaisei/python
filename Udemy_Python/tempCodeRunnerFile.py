@@ -1,1 +1,1 @@
-   # self.passwd = passwd
+with open('text.txt')
