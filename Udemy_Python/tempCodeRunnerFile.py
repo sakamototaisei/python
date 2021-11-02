@@ -1,1 +1,0 @@
-with open('text.txt')
