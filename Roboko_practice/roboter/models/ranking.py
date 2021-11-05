@@ -30,7 +30,7 @@ class RankingModel(CsvModel):
         super().__init__(csv_file, *args, **kwargs)
         self.column = [RANKING_COLUMN_NAME, RANKING_COLUMN_COUNT]
         self.data = collections.defaultdict(int)
-        self.load_deta()
+        self.load_data()
 
 
     def get_csv_file_path(self):
@@ -50,6 +50,7 @@ class RankingModel(CsvModel):
             csv_file_path = RANKING_CSV_FILE_PATH
         return csv_file_path
 
+
     def load_data(self):
         """Load csv data.
 
@@ -62,6 +63,21 @@ class RankingModel(CsvModel):
                 self.data[row[RANKING_COLUMN_NAME]] = int(
                     row[RANKING_COLUMN_COUNT])
         return self.data
+
+
+    def save(self):
+        """Save data to csv file."""
+        # TODO (jsakai) Use locking mechanism for avoiding dead lock issue
+        with open(self.csv_file, 'w+') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=self.column)
+            writer.writeheader()
+
+            for name, count in self.data.items():
+                writer.writerow({
+                    RANKING_COLUMN_NAME: name,
+                    RANKING_COLUMN_COUNT: count
+                })
+
 
     def get_most_popular(self, not_list=None):
         """Fetch the data of the top most ranking.
@@ -83,3 +99,9 @@ class RankingModel(CsvModel):
             if name in not_list:
                 continue
             return name
+
+
+    def increment(self, name):
+        """Increment rank for the give name."""
+        self.data[name.title()] += 1
+        self.save()

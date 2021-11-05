@@ -34,7 +34,18 @@ class RestaurantRobot(Robot):
         super().__init__(name=name)
         self.ranking_model = ranking.RankingModel()
 
+    # デコレーター
+    def _hello_decorator(func):
+        """Decorator to say a greeting if you are not greeting the user."""
+        def wrapper(self):
+            if not self.user_name:
+                self.hello()
+            return func(self)
+        return wrapper
 
+
+    # 必ずhelloを病んでくださいというデコレーター。user_nameを聞いてない状態でこの関数は呼ばれないように設計
+    @_hello_decorator
     def recommend_restaurant(self):
         """Show restaurant recommended restaurant to the user"""
         new_recommend_restaurant = self.ranking_model.get_most_popular()
@@ -44,7 +55,7 @@ class RestaurantRobot(Robot):
 
         will_recommend_restaurants = [new_recommend_restaurant]
         while True:
-            template = console.get_template('greeting.csv', self.speak_color)
+            template = console.get_template('greeting.txt', self.speak_color)
             is_yes = input(template.substitute({
                 'robot_name': self.name,
                 'user_name': self.user_name,
@@ -57,3 +68,31 @@ class RestaurantRobot(Robot):
             if is_yes.lower() == 'n' or is_yes.lower() == 'no':
                 new_recommend_restaurant = self.ranking_model.get_most_popular(
                     not_list=will_recommend_restaurants)
+                if not new_recommend_restaurant:
+                    break
+                will_recommend_restaurants.append(new_recommend_restaurant)
+
+
+    @_hello_decorator
+    def ask_user_favorite(self):
+        """Collect favorite restaurant infomation from users."""
+        while True:
+            template = console.get_template(
+                'which_restaurant.txt', self.speak_color)
+            restaurant = input(template.substitute({
+                'robot_name': self.name,
+                'user_name': self.user_name,
+            }))
+            if restaurant:
+                self.ranking_model.increment(restaurant)
+                break
+
+
+    @_hello_decorator
+    def thank_you(self):
+        """Show words of appreciation to users."""
+        template = console.get_template('good_by.txt', self.speak_color)
+        print(template.substitute({
+            'robot_name': self.name,
+            'user_name': self.name,
+        }))
