@@ -111,3 +111,176 @@ print(l)
 
 
 print('----------------------------------')
+
+
+a, b, c = 10, 5, 100
+
+if a > b > c:
+    print('OK')
+else:
+    print('NO')
+
+l = list(range(1, 10, 3))
+
+print(l)
+
+# リスト内包表記
+l2 = [i for i in range(1,100) if i % 5 == 0]
+print(l2)
+
+# while True:
+#     pass
+
+
+squares = [n**2 for n in range(1, 6) if n % 2 == 1]
+print(squares)
+
+
+# 多重ループ
+
+alpha_list = ['A', 'B', 'C']
+num_list  = [1, 2, 3]
+
+for alpha in alpha_list:
+    for num in num_list:
+        if alpha == 'B':
+            break
+        elif num == 2:
+            continue
+        print(alpha, num)
+
+
+print('----------------------------------')
+
+multiple = []
+for i in range(1, 4):
+    for j in range(1,4):
+        print(i * j)
+
+
+print('----------------------------------')
+
+
+for i in range(1, 8, 1):
+    print(i)
+
+print('----------------------------------')
+
+
+"""
+ファイルの入出力
+
+r       読み込み専用
+w       新規の書き込み専用。既存ファイルがあれば切り詰めて新しく書き込まれる
+x       新規作成。すでにファイルなどがあると失敗する
+a       既存ファイルの末尾に追記
+t       文字などのテキストエディタをテキストモードで扱う
+b       画像などのバイナリデータをバイナリーモードで扱う
++       読み書きの両方を行う場合に使用
+"""
+
+print('----------------------------------')
+
+"""
+例外処理
+
+try:
+    通常行う処理
+except 特定の例外処理:
+    特定の例外が発生したとき行う処理
+"""
+
+# try:
+#     d = int(input('数字を入力してください'))
+#     print(d * 2)
+# except ValueError:
+#     print('それは数字ではありません')
+# finally:
+#     print('処理を終了します')
+
+
+
+with open('sample.txt', 'w') as f:
+    f.write('25')
+
+try:
+    with open('sample.txt', 'r') as f:
+        line = f.readline()
+        num = int(line)
+except OSError:
+    print('OSのエラーです')
+except (ValueError, ZeroDivisionError, TypeError):
+    print('数値演算のエラーです')
+except Exception:
+    print('通常のエラーです')
+# 例外が発生しなかった時の処理
+else:
+    print('結果は{}歳です'.format(num))
+
+
+print('----------------------------------')
+
+
+# 特定の例外を発生させる方法 raise エラー名
+
+try:
+    raise ValueError('値のエラー')
+except ValueError as msg:
+    print('{}という例外なのです'.format(msg))
+
+
+# 自作のエラーを作成できる
+class AnonymousError(Exception):
+    pass
+
+try:
+    raise AnonymousError
+except AnonymousError:
+    print('AnonymousErrorというエラーです')
+
+
+print('----------------------------------')
+
+"""
+Python標準ライブラリ
+
+string          文字列操作を行う
+re              正規表現を使用する
+datetime        日付や時間を扱う
+time            時刻やデータへのアクセスと変換
+calender        カレンダーを扱う
+math            数学関数
+decima          固定および浮動小数点の演算
+random          擬似乱数の生成
+statistics      数理統計関数
+os              OSに依存する機能を利用する
+os.path         OS共通のディレクトリ操作
+shutil          高水準のファイル操作
+sqlite3         SQLLiteデータベースに対するAPIインターフェース
+zlib            gzip互換の圧縮
+zipfile         ZIPファイルの処理
+csv             CSVの読み書き
+hashlib         セキュアハッシュ及びメッセージダイジェスト
+hmac            メッセージ認証のために鍵付きハッシュ化
+logging         Python用のロギング機能
+socket          ネットワークインターフェース
+ssl             TLS/SSLを利用
+email           電子メールとMIME処理のためのパッケージ
+json            JSONエンコーダー及びデコーダー
+base64          Base16 Base32 Base64 Base85 データの符号化
+html            HTMLのサポート
+http            HTTPモジュール群
+xml             XLMモジュール群
+cgi             CGIのサポート
+urllib          URLを扱うモジュール群
+sys             システムを操作
+warnings        警告の表示を制御する
+"""
+
+
+import requests
+url = "https://www.udemy.com"
+# requests.get(変数名)でwebページにアクセスする
+response = requests.get(url)
+# status_codesは正常に通信されたかを表すコードを返す
+print(response.status_code)
