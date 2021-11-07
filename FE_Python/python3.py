@@ -278,12 +278,12 @@ warnings        警告の表示を制御する
 """
 
 
-import requests
-url = "https://www.udemy.com"
-# requests.get(変数名)でwebページにアクセスする
-response = requests.get(url)
-# status_codesは正常に通信されたかを表すコードを返す
-print(response.status_code)
+# import requests
+# url = "https://www.udemy.com"
+# # requests.get(変数名)でwebページにアクセスする
+# response = requests.get(url)
+# # status_codesは正常に通信されたかを表すコードを返す
+# print(response.status_code)
 
 
 print('----------------------------------')
@@ -297,3 +297,147 @@ f = Fernet(key)
 token = f.encrypt(b"Secret!")
 print(token)
 print(f.decrypt(token))
+
+
+print('----------------------------------')
+
+def sum_list(digitlist):
+    sum_digit = 0
+    for digit in digitlist:
+        # digit.isdigitlist()は文字列の要素digitの全てが数字かどうかを判定するメソッド。数字ならTrue、そうで無いならFalse
+        if digit.isdigit():
+            sum_digit += int(digit)
+    return sum_digit
+
+digitlist = ['1', '4', 'abc']
+
+sum_digit = sum_list(digitlist)
+print(sum_digit)
+
+
+print('----------------------------------')
+
+
+"""
+Pythonの組み込み関数
+
+基数演算を行う関数
+bin(x)      正の整数xを0bがついた2進数文字列に変換する
+oct(x)      正の整数xを0oがついた8進数文字列に変換する
+hex(x)      正の整数xを0xがついた16進数文字列に変換する, a~fは小文字で表示される
+
+abs()関数
+数値の絶対値を求める関数
+
+round()関数
+整数や少数を丸めた値を返す関数
+
+pow()関数
+べき乗を返す関数
+
+ord()関数
+文字を文字コードに
+
+chr()関数
+文字コードを文字に
+
+len(s)関数
+sの長さを返す
+
+type(object)関数
+objectを返す
+
+int(x, [base=10])関数
+数値または文字列のxを整数に変換する
+
+float(x)関数
+数値または文字列のxを浮動小数点数に変換する
+
+str(object)関数
+objectを文字列に変換する
+"""
+
+print(bin(3))
+print(oct(10))
+print(hex(20))
+
+# 小数点から右に-2桁(左に2桁, 100の位)での丸め
+print(round(250, -2))
+
+# べき乗を返す
+print(pow(2, 4))
+
+# 文字を文字コードに
+print(ord('s'))
+
+# 文字コードを文字に
+print(chr(115))
+
+
+print('----------------------------------')
+
+"""
+イテレーター
+複数の要素があるデータ型(リスト、タプル、辞書など)全般を指す
+
+イテレーターに変換する組み込み関数
+list([iterable])
+tuple([iterable])
+set([iterable])
+
+イテレーターに演算を行う関数
+all([iterable])                 iterableの全ての要素が真、もしくはiterableが空の場合にTrueを返す
+any([iterable])                 iterableのいずれかの要素が真なら、Trueを返す。空の場合はFalse
+max(iterable, *[key, default])  iterableの最大値を返す
+min(iterable, *[key, default])  iterableの最小値を返す
+sum(iterable, [start])          iterableの要素全てとstartの値を合計して返す。startはデフォルトで0
+
+sorted()関数は、元のリストに変更を加えないので安全です
+
+map()関数
+イテレーターの各要素を適用します
+
+filter()関数
+イテレーターの要素は、イテレーターの要素のうち、条件に適合するものだけを取り出す
+
+zip()関数
+複数のiterableに対して、要素番号が同じものを集めてタプルを生成する関数。
+"""
+
+
+drink_list = ['coffee', 'tea', 'water']
+print(list(enumerate(drink_list)))
+
+for i, drink in enumerate(drink_list):
+    print(i, drink)
+
+
+num_list = [1, 2, 3, 4, 5]
+
+def double(x):
+    return x * 2
+
+# map(関数, リスト)
+print(list(map(double, num_list)))
+
+
+num_list = [1, 3, 6, 8]
+def even_three_dev(x):
+    return x % 3 == 0
+
+# filter(関数, リスト)
+print(list(filter(even_three_dev, num_list)))
+
+
+meallist = ['steak', 'salad', 'dessert']
+drinklist = ['coffee', 'tea', 'water']
+# zip(リストA, リストB)
+print(list(zip(meallist, drink_list)))
+
+
+dict_a = dict(steak=1, salad=2, dessert=3)
+print(dict_a)
+
+meallist = ['steak', 'salad', 'dessert']
+num_list2 = [1, 2, 3]
+print(dict(zip(meallist, num_list2)))
