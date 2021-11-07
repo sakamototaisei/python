@@ -284,3 +284,16 @@ url = "https://www.udemy.com"
 response = requests.get(url)
 # status_codesは正常に通信されたかを表すコードを返す
 print(response.status_code)
+
+
+print('----------------------------------')
+
+# セキュリティ
+
+from cryptography.fernet import Fernet
+
+key = Fernet.generate_key()
+f = Fernet(key)
+token = f.encrypt(b"Secret!")
+print(token)
+print(f.decrypt(token))
