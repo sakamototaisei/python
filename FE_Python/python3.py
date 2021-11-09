@@ -441,3 +441,84 @@ print(dict_a)
 meallist = ['steak', 'salad', 'dessert']
 num_list2 = [1, 2, 3]
 print(dict(zip(meallist, num_list2)))
+
+print('----------------------------------')
+
+def variable_args(first, *args):
+    print('first = {}'.format(first))
+    print('args = {}'.format(args))
+
+variable_args(1, 2, 3)
+
+
+def double(x):
+    x = x * 2
+    return x
+
+x = 1
+y = double(x)
+print(x, y)
+
+
+def list_mod(original):
+    original[1] = 'Apple'
+
+vegetables = ['Carrot', 'Potato', 'Pampkin']
+list_mod(vegetables)
+print(vegetables)
+
+
+def count_up():
+    n = 1
+    while True:
+        yield n
+        n += 1
+
+generator = count_up()
+
+for num in generator:
+    print(num, end=' ')
+    if num == 7:
+        break
+
+print(next(generator))
+
+print('----------------------------------')
+
+
+"""
+lambda式 名前のない簡単な関数を作成する
+lambda 引数 : 戻り値
+"""
+
+double = lambda x : x * 2
+print(double(2))
+
+
+month_name = [(1, 'January'), (2, 'February'), (3, 'March')]
+print(sorted(month_name, key = lambda x : x[1]))
+
+print('----------------------------------')
+
+
+"""
+デコレーター : すでにある関数に内容を追加して別の関数を定義するための機能
+
+@デコレーター名
+"""
+
+def wrapping(contents):
+    print('---- start ----')
+    contents()
+    print('---- end   ----')
+
+# デコレーター
+@wrapping
+def contents():
+    print('これが処理内容です')
+
+list_a = [10, 50, 1, 100]
+print(sorted(list_a))
+list_b = [str(i) for i in list_a]
+print(list_b)
+print(sorted(list_b))
