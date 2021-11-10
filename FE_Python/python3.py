@@ -522,3 +522,67 @@ print(sorted(list_a))
 list_b = [str(i) for i in list_a]
 print(list_b)
 print(sorted(list_b))
+
+
+print('----------------------------------')
+
+
+# オブジェクト指向
+class Dog(object):
+    def cry(self):
+        print('わん')
+
+
+class ShibaInu(Dog):
+    def wait(self):
+        print('待て')
+
+
+pochi = Dog()
+shiro = Dog()
+hachi = ShibaInu()
+
+print(id(pochi), type(pochi))
+print(id(shiro), type(shiro))
+
+pochi.cry()
+hachi.cry()
+hachi.wait()
+
+
+print('----------------------------------')
+
+
+"""
+多相性(ポリモーフィズム)
+同じメソッドを呼び出しても、そのインスタンスのクラスによって振る舞いを変えること
+"""
+
+# ポリモーフィズムのための標準ライブラリabcからインポート
+from abc import ABCMeta, abstractmethod
+
+# 基となる動物クラスAnimal
+class Animal(metaclass = ABCMeta):
+    # インポートした抽象メソッドabstractmethodを使用
+    @abstractmethod
+    # 抽象メソッドを定義
+    def cry(self):
+        pass
+
+
+class Dog(Animal):
+    # Animalクラスからcry()をオーバーライド
+    def cry(self):
+        print('わん')
+
+
+class Cat(Animal):
+    def cry(self):
+        print('にゃー')
+
+
+pochi = Dog()
+mi_tan = Cat()
+
+pochi.cry()
+mi_tan.cry()
