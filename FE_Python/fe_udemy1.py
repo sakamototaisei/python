@@ -196,3 +196,85 @@ try:
     c = devide(10, 0)
 except Exception as e:
     print(e, type(e))
+
+
+print('-------------')
+
+
+"""選択ソート n**"""
+
+list_a = [5, 7, 4, 5, 1, 2, 3, 2, 9, 1, 4]
+
+for i in range(len(list_a)):
+
+    min_idx = i
+    for j in range(i+1, len(list_a)):
+        if list_a[min_idx] > list_a[j]:
+            min_idx = j
+    list_a[i], list_a[min_idx] = list_a[min_idx], list_a[i]
+print(list_a)
+
+
+
+print('-------------')
+
+
+"""バブルソート"""
+
+list_a = [5, 7, 4, 5, 1, 2, 3, 2, 9, 1, 4]
+
+for i in range(len(list_a)):
+    for j in range(0, len(list_a) - i - 1):
+        if list_a[j] > list_a[j+1]:
+            list_a[j], list_a[j+1] = list_a[j+1], list_a[j]
+
+print(list_a)
+
+
+print('-------------')
+
+
+for i in range(9):
+    new_l = list(range(0, 9 - i -1))
+    print(i, new_l)
+
+print('-------------')
+
+list_b = [10, 1, 1000, 100]
+print(list_b)
+for i in range(len(list_b)):
+    print('i = {}'.format(i))
+    for j in range(0, len(list_b) -i -1):
+        print('j = {}'.format(j))
+        print('list_b[j] = {}, list_b[j+1] = {}'.format(list_b[j], list_b[j+1]))
+        if list_b[j] > list_b[j+1]:
+            list_b[j], list_b[j+1] = list_b[j+1], list_b[j]
+        else:
+            print('入れ替えなし')
+        print('list_b = {}'.format(list_b))
+        print('-'*10)
+print(list_b)
+
+
+print('-------------')
+
+
+list_c = [100, 1, 10, 1000]
+print(list_c)
+for i in range(len(list_c)):
+    print('i = {}'.format(i))
+    min_i = i
+    for j in range(i+1, len(list_c)):
+        print('j = {}'.format(j))
+        print('list_c[min_i] = {}, list_c[j] = {}'.format(list_c[min_i], list_c[j]))
+        if list_c[min_i] > list_c[j]:
+            min_i = j
+            print('最小値更新後の値 = {}'.format(list_c[min_i]))
+    list_c[i], list_c[min_i] = list_c[min_i], list_c[i]
+    print(list_c)
+    print('-'*10)
+print(list_c)
+
+
+"""関数"""
+
