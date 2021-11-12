@@ -276,5 +276,216 @@ for i in range(len(list_c)):
 print(list_c)
 
 
+print('-------------')
+
+
 """関数"""
 
+def print_hello(name):
+    print('Hello!' + name)
+
+print_hello('sakatai')
+
+
+def num_max(a, b):
+    print('a = {}, b = {}'.format(a, b))
+    if a > b:
+        return a
+    else:
+        return b
+
+print(num_max(b=100, a=10))
+
+
+print('-------------')
+
+
+def circle(radius, pi=3.14):
+    r = radius * radius * pi
+    return r
+
+result = circle(45)
+print('結界 = {}'.format(result))
+
+
+def sample(age, *args):
+    print('年齢 = {}, 好きな数字 = {}'.format(age, args))
+    print(type(args))
+
+sample(25, 8, 1, 88)
+
+def sample_2(year, **args):
+    for k, v in args.items():
+        print('現在{}年, {key}の年齢は{value}歳'.format(year, key=k, value=v))
+    print('type = {}, dictの中身 = {}'.format(type(args), args))
+
+sample_2(2021, yui = 27, sakatai = 25)
+
+
+print('-------------')
+
+
+"""グローバル変数"""
+
+
+def printAnimal():
+    # グローバル変数宣言
+    global animal
+    animal = 'cat'
+    print('関数内animal = {}, id = {}'.format(animal, id(animal)))
+
+animal = 'dog'
+printAnimal()
+print('関数外animal = {}, id = {}'.format(animal, id(animal)))
+
+
+print('-------------')
+
+
+"""inner関数とノンローカル変数"""
+
+
+def outer():
+
+    outer_value = '外側の変数'
+
+    def inner():
+        # ノンローカル変数として宣言　外側の変数も書き変えることができる
+        nonlocal outer_value
+        outer_value = '内側の変数'
+        print('inner : outer_value = {}, id = {}'.format(outer_value, id(outer_value)))
+    # 外側の関数から内の関数の処理を呼び出す
+    inner()
+    print('outer : outer_value = {}, id = {}'.format(outer_value, id(outer_value)))
+
+outer()
+
+
+print('-------------')
+
+
+"""ジェネレーター関数"""
+
+
+def generator(max):
+    print('ジェネレーター作成')
+    for n in range(max):
+        # yield 値 を呼び出し元に返す
+        yield n
+        print('yield実行')
+
+gen = generator(10)
+n = next(gen)
+print('n = {}'.format(n))
+# yield処理がない場合はエラーになる
+n = next(gen)
+print('n = {}'.format(n))
+
+for x in gen:
+    print('x = {}'.format(x))
+
+
+print('-------------')
+
+
+
+"""
+ジェネレーター関数のメソッド
+
+send() : yieldで停止している箇所に値を送る
+throw() : 指定した例外が発生して処理が終了させる
+close() : ジェネレーターを正常終了させる
+"""
+
+
+def generator_a(max):
+    print('ジャネレーター作成')
+    for n in range(max):
+        try:
+            # send()を使うときは変数宣言する
+            x = yield n
+            print('x = {}'.format(x))
+            print('yield実行')
+        except ValueError as e:
+            print('throwを時効しました')
+
+gen = generator_a(10)
+next(gen)
+# 値を送り込むことができる
+gen.send(100)
+
+# 例外処理を無理やり発生させることができる
+gen.throw(ValueError('Invalid Value = throw()によって例外発生させた'))
+
+# ジェネレータを終了させる next(gen)としてもエラーになる
+# gen.close()
+
+next(gen)
+
+
+print('-------------')
+
+
+"""
+サブジェネレーター yield from
+
+メイン処理 => ジェネレーター => サブジェネレーター
+"""
+
+
+def sub_sub_generator():
+    yield 'SubSubのyield'
+    return 'SunSunのreturn'
+
+
+def sub_generator():
+    yield 'Subのyield'
+
+    # sub_sub_generator()のreturnの値がresに格納される
+    res = yield from sub_sub_generator()
+    print(('Sub res = {}'.format(res)))
+    return 'Subのreturn'
+
+
+def generator():
+    yield 'generatorのyield'
+
+    # sub_generator()のreturnの値が格納される
+    res = yield from sub_generator()
+    print(('gen res = {}'.format(res)))
+    return 'generatorのreturn'
+
+
+gen = generator()
+print(next(gen))
+print(next(gen))
+print(next(gen))
+# print(next(gen))
+# print(next(gen))
+
+
+print('-------------')
+
+
+"""
+ジェネレーターの使い道はメモリの使用量を削減することができる
+DBの大量のデータを扱うときが有効だが処理速度は遅くなる
+"""
+
+import sys
+
+list_a = [i for i in range(100000)]
+
+def num(max):
+    i = 0
+    while i < max:
+        yield i
+        i += 1
+
+# for i in list_a:
+#     print(i)
+
+
+gen = num(100000)
+print(sys.getsizeof(list_a))
+print(sys.getsizeof(gen))
