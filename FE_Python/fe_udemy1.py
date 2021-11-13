@@ -489,3 +489,280 @@ def num(max):
 gen = num(100000)
 print(sys.getsizeof(list_a))
 print(sys.getsizeof(gen))
+
+
+print('-------------')
+
+
+
+"""
+高階関数
+関数を引数として扱うこともできる、また返り値とすることもできる
+"""
+
+# def print_hello():
+#     print('hello')
+
+
+# def print_goodbye():
+#     print('goodbye')
+
+
+# var = ['AA', 'BB', print_hello, print_goodbye]
+# var[2]()
+# var[3]()
+
+
+def print_world(msg):
+    print('{} world'.format(msg))
+
+
+def print_konnnitiha():
+    print('こんにちは')
+
+
+def print_hello(func):
+    func('hello')
+    return print_konnnitiha
+
+var = print_hello(print_world)
+var()
+
+
+print('-------------')
+
+
+"""
+lambda式
+lambda 引数:返り値
+"""
+
+
+lambda_a = lambda x:x * x
+
+res = lambda_a(10)
+print(res)
+
+
+lambda_b = lambda x, y, z=5:x * y * z
+
+res = lambda_b(10, 10)
+print(res)
+
+
+lambda_c = lambda x, y:y if x < y else x
+
+res = lambda_c(100, 10)
+print(res)
+
+
+y = 10
+x = 0 if y > 0 else 1
+
+# print(x)
+
+
+lambda_d = lambda x: x * x
+print(lambda_d(11))
+
+
+print('-------------')
+
+
+"""
+再帰
+関数から自分の関数を呼び出すこと
+実務では滅多に使わない、無限ループになる恐れがあるため
+"""
+
+def sample(a):
+    if a < 0:
+        return
+    else:
+        print(a)
+        sample(a-1)
+
+sample(10)
+
+
+print('-------------')
+
+
+# フィボナッチ
+def fib(n):
+    return 1 if n < 3 else fib(n-1) + fib(n-2)
+
+for x in range(1, 10):
+    print(fib(x))
+
+
+print('-------------')
+
+
+"""
+リスト内包表記
+変数名 = [式 for 変数 in リスト (if　条件式)]
+"""
+
+
+list_a = (1, 2, 3, 'a', 4, 'b')
+
+list_b = [x*2 for x in list_a if type(x) == int]
+print(list_b)
+
+list_c = [x for x in range(100) if x % 7 == 0]
+print(list_c)
+
+
+dict_a = {
+    'a': 'apple',
+    'b': 'banana'
+}
+
+list_d = [dict_a.get(x) for x in list_a if type(x) == str]
+print(list_d)
+
+
+list_a = (x for x in range(10))
+print(list_a, type(list_a))
+
+list_b = tuple(x for x in range(10))
+print(list_b, type(list_b))
+
+def func_a(n):
+    for x in range(2, n):
+        if n % x == 0:
+            return True
+    return False
+
+list_e = [x for x in range(100) if func_a(x) == False]
+print(list_e)
+
+
+print('-------------')
+
+
+"""
+デコレーター関数
+@関数名と関数の前につけることで、デコレーター関数として扱える
+"""
+
+
+def my_decorator(func):
+
+    def wrapper(*args, **kwargs):
+        print(args[0])
+        if args[0] == 1:
+            return 1
+        print('*' * 100)
+        func(*args, **kwargs)
+        print('*' * 100)
+    return wrapper
+
+
+@my_decorator
+def func_a(*args, **kwargs):
+    print('func_aを実行')
+    print(args)
+
+
+@my_decorator
+def func_b(*args, **kwargs):
+    print('func_bを実行')
+    print(args)
+
+
+func_a(1, 2, 3)
+func_b(4, 5, 6)
+
+
+print('-------------')
+
+
+"""
+Map関数
+リスト、辞書のループ可能なクラスの変数を第２引数で入力として受け取り、実行時に第１引数の関数に代入した値を書つ力する
+"""
+
+
+list_a = [1, 2, 3, 4, 5]
+
+map_a = map(lambda x: x * 2, list_a)
+
+for x in map_a:
+    print(x)
+
+man = {
+    'name': 'sakatai',
+    'age': '25',
+    'country': 'japan'
+}
+
+
+
+map_man = map(lambda x: x + ',' + man.get(x), man)
+for x in map_man:
+    print(x)
+
+
+print('-------------')
+
+
+
+def calcurate(x, y, z):
+    if z == 'plus':
+        return x + y
+    elif z == 'minus':
+        return x - y
+
+map_sample = map(calcurate, range(5), [3,3,3,3,3], ['plus', 'minus', 'plus', 'minus', 'plus'])
+for x in map_sample:
+    print(x)
+
+
+print('-------------')
+
+
+"""
+マージソート
+列を分割し、１まで分割したら併合しながら整列させる
+"""
+
+def merge_sort(arr):
+    if len(arr) > 1:
+
+        res, i, j = [], 0, 0
+        mid = len(arr) // 2
+        print('mid = {}'.format(mid))
+        L = arr[:mid]
+        R = arr[mid:]
+        print('L = {}'.format(L))
+        print('R = {}'.format(R))
+        L = merge_sort(L)
+        R = merge_sort(R)
+
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                res.append(L[i])
+                i += 1
+            elif L[i] > R[j]:
+                res.append(R[j])
+                j += 1
+            else:
+                res.append(L[i])
+                i += 1
+            print('res = {}'.format(res))
+
+        while i < len(L):
+            res.append(L[i])
+            i += 1
+        while j < len(R):
+            res.append(R[j])
+            j += 1
+
+        return res
+    else:
+        return arr
+
+list_t = [6, 5, 4, 2]
+print(merge_sort(list_t))

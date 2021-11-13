@@ -1,1 +1,1 @@
-
+print('res = {}'.format(res))
