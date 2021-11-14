@@ -155,3 +155,112 @@ print('シェルソート : ',data)
 
 
 
+print('-------------------------')
+
+
+"""
+ヒープソート n log n
+
+heappush(heap, value) valueの値がヒープに挿入され、
+heappop(heap)で、ヒープの中の最小値が取り出される
+"""
+
+from heapq import heappush, heappop
+
+def sort(data):
+    # からのヒープリストを作成
+    heap = []
+
+    while data:
+        heappush(heap, data.pop())
+    while heap:
+        data.append(heappop(heap))
+
+
+data = [1, 3, 2, 5, 4, 2, 1]
+sort(data)
+print(data)
+
+
+print('-------------------------')
+
+
+"""
+再帰
+"""
+
+def f(n):
+    if n <= 1:
+        return n
+    else:
+        return n + f(n-1)
+
+print(f(5))
+
+
+print('-------------------------')
+
+
+"""
+クイックソート
+
+"""
+
+
+def sort(data):
+
+    n = len(data)
+    # 真ん中の値を利用
+    pivot = data[n//2]
+    print('pivot = {}'.format(pivot))
+    left, right, middle = [], [], []
+
+    for i in range(n):
+        if data[i] < pivot:
+            left.append(data[i])
+        elif data[i] > pivot:
+            right.append(data[i])
+        else:
+            middle.append(data[i])
+
+    if left:
+        left = sort(left)
+    if right:
+        right = sort(right)
+
+    return left + middle + right
+
+
+data = [1, 3, 2, 5, 4, 2, 1]
+print(sort(data))
+
+
+print('-------------------------')
+
+
+"""
+グラフのアルゴリズム
+
+"""
+
+edge = [[1], [2, 3], [4, 5], [6, 7],
+        [], [], [], [8]]
+
+# キューを作成
+queue = deque()
+# 根を追加
+queue.append(edge[0][0])
+print('queue = {}'.format(queue))
+
+
+while len(queue) > 0:
+    print('len(queue) = {}, queue = {}'.format(len(queue), queue))
+    # 先頭を取り出す
+    i = queue.popleft()
+    print('popleft()  = {}'.format(i))
+    # 歯がない場合は飛ばす
+    if i >= len(edge):
+        continue
+    # 新たなノードを追加
+    for j in edge[i]:
+        queue.append(j)

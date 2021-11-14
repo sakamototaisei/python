@@ -766,3 +766,30 @@ def merge_sort(arr):
 
 list_t = [6, 5, 4, 2]
 print(merge_sort(list_t))
+
+
+print('-------------')
+
+
+"""2文探索"""
+
+
+def binary_search(arr, target):
+
+    start = 0
+    end = len(arr) - 1
+
+    while start <= end:
+        search_idx = (start + end) // 2
+        print('start = {}, end = {}'.format(start, end))
+        print('search_idx = {}'.format(search_idx))
+        if arr[search_idx] == target:
+            return search_idx
+        elif arr[search_idx] < target:
+            start = search_idx + 1
+        else:
+            end = search_idx - 1
+    return -1
+
+a = [1, 2, 3, 4, 5 ,6 , 7, 8, 9]
+print(binary_search(a, 9))
