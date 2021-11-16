@@ -180,12 +180,49 @@ class Human(object):
     def __eq__(self, other):
         return (self.name == other.name) and (self.phone_number == other.phone_number)
 
+    # 文字列をハッシュ値に変換する
+    def __hash__(self):
+        return hash(self.name + self.phone_number)
+
+    # if文などでTrueFalseを求めるときに呼び出される
+    def __bool__(self):
+        return True if self.age >= 20 else False
+
+    # len()関数が使われた際に内部的にはこれを実行
+    def __len__(self):
+        return len(self.name)
 
 
-man = Human('sakatai', 25, '09088881111')
-man2 = Human('sakatai', 5, '09088881111')
 
+man = Human('taisei', 25, '09088881111')
+man2 = Human('taisei', 18, '09088881111')
+man3 = Human('jo', 18, '09077776666')
+
+# __str__
 man_str = str(man)
 print(man_str)
 
+# __eq__
 print(man == man2)
+
+# __hash__
+print(hash('sakatai'))
+print(hash(man2.name))
+
+# set
+set_man = {man, man2, man3}
+for x in set_man:
+    print(x)
+
+# __bool__
+if man:
+    print('manはTrue')
+if man2:
+    print('man2はTrue')
+
+# len
+print(len(man))
+print(len(man3))
+
+
+print('-------------------------')
