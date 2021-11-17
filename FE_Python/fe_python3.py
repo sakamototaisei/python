@@ -216,3 +216,136 @@ class Man(Human):
 print('------------------------')
 
 
+"""
+プライベート変数
+"""
+
+
+class Human(object):
+    # クラス変数のプライベート変数
+    __class_val = 'Human'
+
+    def __init__(self, name, age):
+        # __変数名でプライベート変数となる,クラスの外からはアクセスできない
+        self.__name = name
+        self. __age = age
+
+    def print_msg(self):
+        # クラス内からプライベート変数にアクセスしている
+        print('name = {}, age = {}'.format(self.__name, self.__age))
+
+
+human = Human('sakatai', 25)
+# プライベート変数を呼び出すことはできるが、あまり使われることはない
+print(human._Human__name)
+
+human.print_msg()
+
+
+print('------------------------')
+
+
+"""
+カプセル化 : プライベート変数を使う際には外部から変数が見えないようにするん必要がある
+setterとgetter
+
+def get_変数名():
+def set_変数名():
+
+property(get_変数名, set_変数名)
+"""
+
+class Human(object):
+
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    def get_name(self):
+        print('getter name を実行')
+        return self.__name
+
+    def get_age(self):
+        print('getter age を実行')
+        return self.__age
+
+    def set_name(self, name):
+        print('setter name を実行')
+        self.__name = name
+
+    def set_age(self, age):
+        print('setter age を実行')
+        self.__age = age
+
+    # ここでgetterとsetterの呼び出しがされるようになる
+    name = property(get_name, set_name)
+    age = property(get_age, set_age)
+
+    def print_msg(self):
+        print(self.name, self.age)
+
+
+human = Human('Toro', 25)
+
+# setterの利用
+human.name = 'sakatai'
+human.age = 26
+
+# getterの利用
+name = human.name
+age = human.age
+print(name, age)
+
+human.print_msg()
+
+
+print('------------------------')
+
+
+"""
+getterとsetterの2つ目の一般的な利用の仕方
+"""
+
+
+class Human(object):
+
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    # getterの処理
+    @property
+    def name(self):
+        print('getter name 実行')
+        return self.__name
+
+    # getterの処理
+    @property
+    def age(self):
+        print('getter age 実行')
+        return self.__age
+
+    # setterの処理
+    @name.setter
+    def name(self, name):
+        print('setter name 実行')
+        self.__name = name
+
+    # setterの処理
+    @age.setter
+    def age(self, age):
+        print('setter age 実行')
+        if age < 0:
+            print('0以上を設定してください')
+            return
+        self.__age = age
+
+human = Human('Maro', 25)
+human.name = 'sakatai'
+print(human.name)
+
+human.age = -1
+print(human.age)
+
+
+print('------------------------')
