@@ -119,5 +119,100 @@ def float_func():
         print('正しく数値を入力してください')
         print(e)
 
-result = float_func()
-print(result)
+# result = float_func()
+# print(result)
+
+
+print('-----------------------')
+
+
+"""
+コンテナ : 書類棚のようなもの、データ構造を持つ。
+ex)リスト、タプル、辞書
+
+メソッド : 特定のデータ型に密接にかんれん付けられている関数。
+
+イテラブル : 繰り返し処理で要素を１つずつ取り出せるオブジェクト(繰り返し可能)
+
+ミュータブル : 変更可能
+
+イミュータブル : 変更不可
+"""
+
+print('hello'.upper())
+print('hello'.replace('o', '@'))
+
+
+fruits = ['apple', 'banana', 'melon']
+print('banana' in fruits)
+print('peach' in fruits)
+print(len(fruits))
+
+print('-----------------------')
+
+
+colors = ['purple', 'orange', 'green']
+
+# while True:
+#     guess = input('私の色は何色でしょう?(入力してください) : ')
+#     if guess in colors:
+#         print('大当たりー！！！')
+#         break
+#     else:
+#         print('ハズレ！再チャレンジ!')
+#         print('ヒントは...柑橘系？自然？毒？')
+
+
+print('-----------------------')
+
+
+singer = {
+    '1': '宇多田ヒカル',
+    '2': 'ジャスティン・ビーバー',
+    '3': 'コレコレ',
+    '4': 'マシュメロ',
+    '5': 'アラン・ウォーカー'
+}
+
+# n = input('数字を入力してください : ')
+# if n in singer:
+#     song = singer[n]
+#     print(song)
+# else:
+#     print('見つかりませんでした。')
+
+print('-----------------------')
+
+
+"""
+文字列操作
+
+"""
+
+name = 'my name is sakatai'
+print(name.capitalize())
+
+
+I_AM = ['my', 'name', 'is', 'sakatai']
+introduction = ' '.join(I_AM)
+print(introduction)
+
+s = '       sakatai       '
+print(s)
+# 空白除去
+s = s.strip()
+print(s)
+
+s = 'My name is sakatai'
+# 文字列の置換
+s = s.replace('a', '@')
+print(s)
+
+
+print('-----------------------')
+# 文字を探す
+try:
+    print(s.index('z'))
+except ValueError as e:
+    print(e)
+    print('Not fount.')
