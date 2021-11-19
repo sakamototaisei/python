@@ -216,3 +216,45 @@ try:
 except ValueError as e:
     print(e)
     print('Not fount.')
+
+
+print('-----------------------')
+
+
+"""
+ループ
+"""
+
+name_ver = ['SAKATAI', 'Sakatai', 'sakatai']
+print(name_ver)
+
+for i, new in enumerate(name_ver):
+    new = name_ver[i]
+    new = new.upper()
+    name_ver[i] = new
+
+print(name_ver)
+
+
+print('-----------------------')
+
+
+fruits_name = ['apple', 'banana', 'melon']
+family_name = ['mamoru', 'nobuko', 'yui', 'sakatai', 'mitan']
+new_list = []
+print(new_list)
+
+for show in fruits_name:
+    show = show.upper()
+    new_list.append(show)
+
+for show in family_name:
+    show = show.upper()
+    new_list.append(show)
+
+print(new_list)
+
+
+print('-----------------------')
+
+
