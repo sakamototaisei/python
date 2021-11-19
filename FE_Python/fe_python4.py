@@ -82,3 +82,32 @@ with open(file_path, 'a', encoding='utf-8', newline='\n') as f:
         f.write('\n')
         f.write(','.join(x))
 
+
+print('----------------')
+
+
+class WithTest(object):
+
+    def __init__(self, file_name):
+        print('init called')
+        self.__file_name = file_name
+
+    def __enter__(self):
+        print('enter called')
+        self.__file = open(self.__file_name, 'w', encoding='utf-8')
+        # returnでWithTestのインスタンスを返す
+        return self
+
+    def write(self, msg):
+        print('write colled')
+        self.__file.write(msg)
+
+    # __exit__の引数はエラーハンドリングのためのもの3つ必要
+    def __exit__(self, exc_type, exc_val, traceback):
+        print('exit called')
+        self.__file.close()
+
+# t : の中には__enter__からのreturnのインスタンスが返ってくる
+with WithTest('FE_Python/output.txt') as t:
+    print('withの中')
+    t.write('あああああああああ')
