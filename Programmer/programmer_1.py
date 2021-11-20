@@ -258,3 +258,102 @@ print(new_list)
 print('-----------------------')
 
 
+qs = ['あなたの名前はなんですか？',
+      'あなたの好きな色はなんですか？',
+      'あなたのやることはなんですか?']
+
+n = 0
+# while True:
+#     print('Type q to quit')
+#     a = input(qs[n])
+#     if a == 'q':
+#         break
+#     n = (n + 1) % 3
+
+print('-----------------------')
+
+
+# while input('y or n?') != 'n':
+#     for i in range(1, 6):
+#         print(i)
+
+
+print('-----------------------')
+
+"""
+モジュール : 分割したコードを書いておくファイルそれぞれをモジュールと呼ぶ
+(.py拡張子付きのファイル)
+"""
+
+# 乗数計算
+import math
+
+print(math.pow(2, 3))
+
+
+print('-----------------------')
+
+# ランダム
+import random
+
+print(random.randint(1, 10))
+
+
+print('-----------------------')
+
+
+import statistics
+"""
+mean : 平均値
+median : 中央値
+mode : 最頻値
+"""
+
+nums = [1, 5, 33, 12, 46, 33, 2]
+
+print(statistics.mean(nums))
+
+print(statistics.median(nums))
+
+print(statistics.mode(nums))
+
+
+print('-----------------------')
+
+
+import hello
+
+# hello.pyからインポートしている
+hello.print_hello()
+
+
+print('-----------------------')
+
+"""
+モジュール名だけだとすべて出力される
+モジュール先でif __name__ == '__main__:とすると
+importするだけでは出力されないようになる
+"""
+import module1
+
+
+print('-----------------------')
+
+
+"""
+ファイル
+"""
+
+# st = open('st.txt', 'w', encoding='utf-8')
+# st.write('Hi from Python!')
+# st.close()
+
+with open('st.txt', 'w', encoding='utf-8') as f:
+    f.write('こんにちはPython!')
+
+
+msg_list = []
+with open('st.txt', 'r', encoding='utf-8') as f:
+    msg_list.append(f.read())
+
+print(msg_list)
