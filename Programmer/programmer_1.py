@@ -357,3 +357,8 @@ with open('st.txt', 'r', encoding='utf-8') as f:
     msg_list.append(f.read())
 
 print(msg_list)
+
+
+print('-----------------------')
+
+
