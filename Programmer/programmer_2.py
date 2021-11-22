@@ -107,3 +107,166 @@ print('-----------------------')
 
 class Shape(object):
 
+    def __init__(self, w, l):
+        self.width = w
+        self.len = l
+
+    def print_size(self):
+        print('{} by {}'.format(self.width, self.len))
+
+
+class Square(Shape):
+
+    def area(self):
+        return self.width * self.len
+
+    # 親クラスのメソッドオーバーライド
+    def print_size(self):
+        print('I am {} by {}'.format(self.width, self.len))
+
+
+my_shape = Shape(20, 25)
+my_shape.print_size()
+
+print('-----------------------')
+
+squqre_a = Square(20, 20)
+squqre_a.print_size()
+print(squqre_a.area())
+
+print('-----------------------')
+
+
+"""
+コンポジション
+has-a関係を表し、別のクラスのオブジェクトを変数として持たせる
+"""
+
+class Dog(object):
+
+    def __init__(self, name, breed, owner):
+        self.name = name
+        self.breed = breed
+        self.owner = owner
+
+
+class Person(object):
+
+    def __init__(self, name):
+        self.name = name
+
+
+sakatai = Person('Sakatai')
+# 引数にPerson()クラスで作成したオブジェクトをownerに設定
+stan = Dog('mi-tan', 'tinntira', sakatai)
+
+print(stan.owner.name)
+
+
+print('-----------------------')
+
+
+"""
+もっとオブジェクト指向プログラミング
+"""
+
+class Square(object):
+    pass
+
+print(Square)
+
+print('-----------------------')
+
+
+class Rectangle(object):
+    recs = []
+
+    def __init__(self, w, l):
+        # インスタンス変数
+        self.width = w
+        self.len = l
+        # タプルでrecsに追加している
+        self.recs.append((self.width, self.len))
+
+    def print_size(self):
+        print('{} by {}'.format(self.width, self.len))
+
+r1 = Rectangle(10, 24)
+r2 = Rectangle(20, 40)
+r3 = Rectangle(100, 200)
+
+print(Rectangle.recs)
+
+
+print('-----------------------')
+
+
+class Lion(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    # オブジェクトをprint()に渡すと、objectクラスから継承した__repr__という特殊メソッドを呼び出す
+    def __repr__(self):
+        return self.name
+
+
+lion = Lion('sakatai')
+print(lion)
+
+print('-----------------------')
+
+
+class AlwaysPositive(object):
+
+    def __init__(self, number):
+        self.number = number
+
+    def __add__(self, other):
+        """abs()関数は絶対値を求める"""
+        return abs(self.number + other.number)
+
+x = AlwaysPositive(-20)
+y = AlwaysPositive(10)
+
+print(x + y)
+
+
+print('-----------------------')
+
+
+"""
+is
+isキーワードは、前後のオブジェクトが同一のオブジェクトならTrueを返す。
+同じでないならFalseを返す
+"""
+
+
+class Person(object):
+
+    def __init__(self):
+        self.name = 'Sakatai'
+
+sakatai = Person()
+same_sakatai = sakatai
+print(sakatai is same_sakatai)
+
+
+another_sakatai = Person()
+print(sakatai is another_sakatai)
+
+
+print('-----------------------')
+
+
+x = 10
+if x is None:
+    print('x はNone')
+else:
+    print('x はNoneじゃない')
+
+x = None
+if x is None:
+    print('x はNone')
+else:
+    print('x はNoneじゃない')
