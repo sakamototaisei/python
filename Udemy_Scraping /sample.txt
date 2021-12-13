@@ -1,0 +1,7 @@
+body > div.uni-home-2020.home-2020-wrap > div.home-2020-primebox > div.home-2020-primebox-article > div.home-2020-prime-topnews.active > h3 > a
+
+body > div.uni-home-2020.home-2020-wrap > div.home-2020-primebox > div.home-2020-primebox-article > div.home-2020-prime-maincontent > div.home-2020-headline.home-2020-prime-headline > ul.active > li:nth-child(1) > h3 > a
+
+body > div.uni-home-2020.home-2020-wrap > div.home-2020-primebox > div.home-2020-primebox-article > div.home-2020-prime-maincontent > div.home-2020-headline.home-2020-prime-headline > ul.active > li:nth-child(2) > h3 > a
+
+body > div.uni-home-2020.home-2020-wrap > div.home-2020-primebox > div.home-2020-primebox-article > div.home-2020-prime-maincontent > div.home-2020-headline.home-2020-prime-headline > ul.active
