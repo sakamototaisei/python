@@ -5,3 +5,12 @@ body > div.uni-home-2020.home-2020-wrap > div.home-2020-primebox > div.home-2020
 body > div.uni-home-2020.home-2020-wrap > div.home-2020-primebox > div.home-2020-primebox-article > div.home-2020-prime-maincontent > div.home-2020-headline.home-2020-prime-headline > ul.active > li:nth-child(2) > h3 > a
 
 body > div.uni-home-2020.home-2020-wrap > div.home-2020-primebox > div.home-2020-primebox-article > div.home-2020-prime-maincontent > div.home-2020-headline.home-2020-prime-headline > ul.active
+
+
+#search > div.s-desktop-width-max.s-desktop-content.s-opposite-dir.sg-row > div.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div > span:nth-child(4) > div.s-main-slot.s-result-list.s-search-results.sg-row > div:nth-child(7) > div
+#search > div.s-desktop-width-max.s-desktop-content.s-opposite-dir.sg-row > div.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div > span:nth-child(4) > div.s-main-slot.s-result-list.s-search-results.sg-row > div:nth-child(8) > div
+
+
+#tabpanelTopics1 > div > div._2jjSS8r_I9Zd6O9NFJtDN- > ul > li:nth-child(1) > article > a > div > div > h1 > span
+#uamods-pickup > div.sc-gQORMK.kpPhJL > div > p > a
+#uamods-pickup > div.sc-gQORMK.kpPhJL > div > p > a

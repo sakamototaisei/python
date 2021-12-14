@@ -17,6 +17,8 @@ soup = BeautifulSoup(res.text, 'html.parser')
 elems = soup.select('div.home-2020-prime-headline > ul[data-category="総合"]')
 elems_news = elems[0].find_all('h3')
 
+i = 1
 for elem in elems_news:
-    print(elem.a.string)
+    print(str(i), ':', elem.a.string)
     print(elem.a['href'], end='\n\n')
+    i += 1
