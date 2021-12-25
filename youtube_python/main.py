@@ -72,12 +72,18 @@ while True:
         else:
             print(colored('不正解', 'blue'))
             mistake_cnt += 1
+            print('-'*50)
+            print('答え = {}'.format(fruits[word]))
+            print('-'*50)
             if mistake_cnt == 3:
                 print('3回間違えました。ゲームオーバー。再チャレンジしてね!')
                 break
     except TimeoutOccurred:
         print(colored('不正解', 'blue'))
         mistake_cnt += 1
+        print('-'*50)
+        print('【答え = {}】'.format(fruits[word]))
+        print('-'*50)
         if mistake_cnt == 3:
             print('3回間違えました。ゲームオーバー。再チャレンジしてね!')
             break
