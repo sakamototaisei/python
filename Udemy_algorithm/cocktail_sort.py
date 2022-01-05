@@ -8,7 +8,7 @@ def cocktail_sort(numbers: List[int]) -> List[int]:
     swapped = True
     start = 0
     end = len_numbers - 1
-    while  swapped:
+    while swapped:
         swapped = False
         for i in range(start, end):
             if numbers[i] > numbers[i+1]:
@@ -19,7 +19,7 @@ def cocktail_sort(numbers: List[int]) -> List[int]:
             break
 
         swapped = False
-        end = end - 1
+        end -= 1
 
         for i in range(end-1, start-1, -1):
             if numbers[i] > numbers[i+1]:
