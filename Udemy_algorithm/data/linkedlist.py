@@ -1,7 +1,7 @@
 # リンクリスト
 # Any(なんでもいいですよの意味)
 from __future__ import annotations
-from typing import Any
+from typing import Any, Optional
 
 
 class Node(object):
@@ -81,21 +81,44 @@ class LinkedList(object):
 
         self.head = _reverse_recursive(self.head, None)
 
+    def reverse_even(self) -> None:
+        # 1, 4, 6, 8, 9 => 1, 8, 6, 4, 9
+        # 1, 2, 3, 4, 5 => 1, 2, 3, 4, 5
+        def _reverse_even(head: Node, previous_node: Node) -> Optional[Node]:
+            if head is None:
+                return None
+
+            current_node = head
+            while current_node and current_node.data % 2 == 0:
+                next_node = current_node.next
+                current_node.next = previous_node
+                previous_node = current_node
+                current_node = next_node
+            # 偶数が入れ替えが行われた時に入る
+            if current_node != head:
+                head.next = current_node
+                _reverse_even(current_node, None)
+                return previous_node
+            else:
+                head.next = _reverse_even(head.next, head)
+                return head
+
+        self.head = _reverse_even(self.head, None)
+
 
 if __name__ == '__main__':
     l = LinkedList()
     l.append(1)
-    l.append(2)
-    l.append(3)
-    # print(l.head.data)
-    # print(l.head.next.data)
-    # print(l.head.next.next.data)
-    # print(l.head.next.next.next.data)
+    l.append(4)
+    l.append(6)
+    l.append(8)
+    l.append(9)
+    l.append(1)
+    l.append(4)
+    l.append(6)
+    l.append(8)
+    l.append(9)
     l.print()
-    print('----------- Iter')
-    l.reverse_iterative()
-    l.print()
-
-    print('----------- Rec')
-    l.reverse_recursive()
+    print('---------------')
+    l.reverse_even()
     l.print()
