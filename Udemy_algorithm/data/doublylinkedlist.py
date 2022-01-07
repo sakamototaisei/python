@@ -117,6 +117,7 @@ class DoublyLinkedList(object):
 
         current_node = self.head
         while current_node.next:
+            # 1, 5, 2, 0, 9
             next_node = current_node.next
             while next_node:
                 if current_node.data > next_node.data:
@@ -134,6 +135,7 @@ if __name__ == '__main__':
     d.append(1)
     d.append(5)
     d.append(2)
+    d.append(0)
     d.append(9)
     d.print()
     print('----------')
