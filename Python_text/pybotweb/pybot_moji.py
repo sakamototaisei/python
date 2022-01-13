@@ -7,18 +7,17 @@ from PIL import (
 import pickle
 
 
-def moji_command():
+def moji_command(image):
     # if not image:
     #     return '画像を指定してください'
 
     # 学習済みのモデルのロード
-    with open('Python_text/pybotweb/trained-model.pickle', 'rb') as b:
+    with open('/Users/sakamototaisei/Desktop/python/Python_text/trained-model.pickle', 'rb') as b:
         clf = pickle.load(b)
-
 
     # 前処理
     # アップされた画像をPillowで開く
-    im = Image.open('Python_text/mydigit.jpg')
+    im = Image.open(image.file)
     # 明暗をはっきりさせる
     im = ImageEnhance.Brightness(im).enhance(3)
     # モノクロームに変換する
@@ -40,9 +39,5 @@ def moji_command():
     return 'この数字は「{}」です'.format(y_pred)
 
 
-# with open('Python_text/pybotweb/trained-model.pickle', 'rb') as b:
-#     clf = pickle.load(b)
-# print(clf)
-
-result = moji_command()
-print(result)
+# result = moji_command()
+# print(result)

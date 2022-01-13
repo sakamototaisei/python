@@ -5,6 +5,7 @@ from pybot_sum import sum_command
 from pybot_book import book_command
 from pybot_markov import markov_command
 from pybot_moji import moji_command
+from pybot_temp import temp_command
 
 
 def len_command(command):
@@ -73,6 +74,8 @@ def pybot(command, image=None):
                 response = markov_command()
             if '文字' in command:
                 response = moji_command(image)
+            if '気温データ' in command:
+                response = temp_command(command)
 
         if not response:
             response = '何ヲ言ッテルカ、ワカラナイ'
