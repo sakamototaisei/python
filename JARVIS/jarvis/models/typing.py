@@ -4,7 +4,7 @@ from termcolor import colored
 from inputimeout import inputimeout, TimeoutOccurred
 
 
-def play():
+def play_typing():
     print('英単語タイピングゲームです!\n早速ゲームを始めましょう!')
 
     # ジャンルを選択する

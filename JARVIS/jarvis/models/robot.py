@@ -1,4 +1,8 @@
-from jarvis.models.typing import play
+import time
+
+from jarvis.models.jan import play_jan
+from jarvis.models.typing import play_typing
+from jarvis.models.ec import play_ec
 
 
 class Jarvis(object):
@@ -7,10 +11,14 @@ class Jarvis(object):
         pass
 
     def typing_game_start(self):
-        play()
+        print('タイピングゲームをはじめます')
+        time.sleep(2)
+        play_typing()
 
     def ec_scraping(self):
-        pass
+        print('最安値商品をお探します')
+        time.sleep(2)
+        play_ec()
 
     def investment(self):
         pass
@@ -19,8 +27,9 @@ class Jarvis(object):
         pass
 
     def janken_game(self):
-        pass
+        print('じゃんけんゲームをはじめます')
+        time.sleep(2)
+        play_jan()
 
     def dictionary(self):
         pass
-    
