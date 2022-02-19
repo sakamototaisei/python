@@ -3,6 +3,7 @@ import time
 from jarvis.models.jan import play_jan
 from jarvis.models.typing import play_typing
 from jarvis.models.ec import play_ec
+from jarvis.models.investment import play_investment
 
 
 class Jarvis(object):
@@ -11,7 +12,7 @@ class Jarvis(object):
         pass
 
     def typing_game_start(self):
-        print('タイピングゲームをはじめます')
+        print('タイピングゲームを開始します')
         time.sleep(2)
         play_typing()
 
@@ -21,13 +22,15 @@ class Jarvis(object):
         play_ec()
 
     def investment(self):
-        pass
+        print('積立シュミレーションを開始します')
+        time.sleep(2)
+        play_investment()
 
     def qr_code(self):
         pass
 
     def janken_game(self):
-        print('じゃんけんゲームをはじめます')
+        print('じゃんけんゲームを開始します')
         time.sleep(2)
         play_jan()
 
