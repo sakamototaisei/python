@@ -19,6 +19,6 @@ def play_investment():
     result = math.floor(amount * 10000 * coefficient / 12)
 
     print()
-    print('毎月の積み立て金額はおよそ【' + str(result) + '万円】' + 'になります')
+    print('毎月の積み立て金額はおよそ【' + str(result) + '円】' + 'になります')
 
     time.sleep(3)
