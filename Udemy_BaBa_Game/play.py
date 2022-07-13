@@ -25,3 +25,6 @@ print(f'{players[passer_i]} --> {players[taker_i]}')
 
 passer_i, taker_i = create_turn_index(passer_i, taker_i, players)
 print(f'{players[passer_i]} --> {players[taker_i]}')
+
+
+# カード選択機能
