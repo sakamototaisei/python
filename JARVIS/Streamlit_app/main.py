@@ -52,7 +52,7 @@ if st.checkbox('show map'):
 # 画像の表示
 if st.checkbox('show image'):
     st.write('display image')
-    img = Image.open('Streamlit_app/jastina.jpeg')
+    img = Image.open('JARVIS/Streamlit_app/jastina.jpeg')
     st.image(img, caption='jastina', use_column_width=True)
 
 # セレクトボックス
