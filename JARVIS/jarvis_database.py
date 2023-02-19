@@ -69,4 +69,3 @@ def update_data():
 
 # ドキュメントの削除
 # db.collection('users').document('suzuki').delete()
-print(df)
